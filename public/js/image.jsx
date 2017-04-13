@@ -7,7 +7,7 @@ class Image extends React.Component {
             height: '400px',
         };
         return <img src={this.props.url}
-                    onClick={this.props.onClickHandler}
+                    onClick={()=> this.props.onClickHandler(this.props.index)}
                     style={imageStyle}/>;
     };
 }

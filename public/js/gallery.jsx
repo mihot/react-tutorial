@@ -7,7 +7,10 @@ class Gallery extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {urls: []};
+        this.state = {
+            urls: [],
+            newImage: ''
+        };
         console.log('init');
     }
 
@@ -33,12 +36,33 @@ class Gallery extends React.Component {
         this.setState({urls});
     };
 
+    addImage = () => {
+        console.log('new image', this.state.newImage);
+        const urls = this.state.urls.slice();
+        urls.push(this.state.newImage);
+        this.setState({
+            urls,
+            newImage: ''
+        });
+    };
+
+    onNewImageHandler = (event) => {
+          console.log(event.target.value);
+          this.setState({
+              newImage: event.target.value
+          });
+    };
+
     render() {
         console.log('render');
         return (
             <div>
+                <div>
+                    <input type="text" value={this.state.newImage} onChange={this.onNewImageHandler}/>
+                    <button type="button" onClick={this.addImage}>Dodaj Lidiju</button>
+                </div>
                 {this.state.urls.map((url, index) =>
-                    <Image url={url} key={index} onClickHandler={this.onImageClickHandler}/>
+                    <Image url={url} key={index} index={index} onClickHandler={this.onImageClickHandler}/>
                 )}
 
                 {!this.state.urls.length &&
