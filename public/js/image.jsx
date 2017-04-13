@@ -6,7 +6,9 @@ class Image extends React.Component {
             width: '400px',
             height: '400px',
         };
-        return <img src={this.props.url} style={imageStyle}/>;
+        return <img src={this.props.url}
+                    onClick={this.props.onClickHandler}
+                    style={imageStyle}/>;
     };
 }
 
