@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from './image.jsx';
+import AddImage from './addImage.jsx';
 
 import Data from './services/data.jsx';
 
@@ -47,28 +48,27 @@ class Gallery extends React.Component {
     };
 
     onNewImageHandler = (event) => {
-          console.log(event.target.value);
-          this.setState({
-              newImage: event.target.value
-          });
+        console.log(event.target.value);
+        this.setState({
+            newImage: event.target.value
+        });
     };
 
     render() {
         console.log('render');
         return (
             <div>
-                <div>
-                    <input type="text" value={this.state.newImage} onChange={this.onNewImageHandler}/>
-                    <button type="button" onClick={this.addImage}>Dodaj Lidiju</button>
-                </div>
+                <AddImage newImage={this.state.newImage}
+                          onNewImageHandler={this.onNewImageHandler}
+                          addImage={this.addImage}/>
                 {this.state.urls.map((url, index) =>
                     <Image url={url} key={index} index={index} onClickHandler={this.onImageClickHandler}/>
                 )}
 
                 {!this.state.urls.length &&
-                    <h2>
-                        Lidija, vrati seeeeee :(
-                    </h2>
+                <h2>
+                    Lidija, vrati seeeeee :(
+                </h2>
                 }
             </div>
         )
