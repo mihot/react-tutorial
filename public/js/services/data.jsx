@@ -12,9 +12,7 @@ class Data {
 
     static getDataFromServer() {
         return fetch('/images')
-            .then(response => {
-
-            });
+            .then(response => response.json());
     }
 }
 
